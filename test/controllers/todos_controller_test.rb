@@ -2,37 +2,41 @@ require "test_helper"
 
 class TodosControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get todos_index_url
+    get todos_path
     assert_response :success
   end
 
   test "should get show" do
-    get todos_show_url
+    todo = todos(:one)
+    get todo_path(todo)
     assert_response :success
   end
 
   test "should get new" do
-    get todos_new_url
+    get new_todo_path
     assert_response :success
   end
 
   test "should get create" do
-    get todos_create_url
-    assert_response :success
+    post todos_path, params: { todo: { title: "Test Todo" } }
+    assert_response :redirect
   end
 
   test "should get edit" do
-    get todos_edit_url
+    todo = todos(:one)
+    get edit_todo_path(todo)
     assert_response :success
   end
 
   test "should get update" do
-    get todos_update_url
-    assert_response :success
+    todo = todos(:one)
+    patch todo_path(todo), params: { todo: { title: "Updated Todo" } }
+    assert_response :redirect
   end
 
   test "should get destroy" do
-    get todos_destroy_url
-    assert_response :success
+    todo = todos(:one)
+    delete todo_path(todo)
+    assert_response :redirect
   end
 end
