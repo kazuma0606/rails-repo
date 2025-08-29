@@ -1,0 +1,75 @@
+Run bin/rails db:test:prepare test test:system
+  bin/rails db:test:prepare test test:system
+  shell: /usr/bin/bash -e {0}
+  env:
+    RAILS_ENV: test
+Running 7 tests in a single process (parallelization threshold is 50)
+Run options: --seed 870
+
+# Running:
+
+.E
+
+Error:
+TodosControllerTest#test_should_get_show:
+ActionView::Template::Error: Asset `application.css` was not declared to be precompiled in production.
+Declare links to your assets in `app/assets/config/manifest.js`.
+
+  //= link application.css
+
+and restart your server
+    app/views/layouts/application.html.erb:21
+    test/controllers/todos_controller_test.rb:11:in 'block in <class:TodosControllerTest>'
+
+bin/rails test test/controllers/todos_controller_test.rb:9
+
+E
+
+Error:
+TodosControllerTest#test_should_get_new:
+ActionView::Template::Error: Asset `application.css` was not declared to be precompiled in production.
+Declare links to your assets in `app/assets/config/manifest.js`.
+
+  //= link application.css
+
+and restart your server
+    app/views/layouts/application.html.erb:21
+    test/controllers/todos_controller_test.rb:16:in 'block in <class:TodosControllerTest>'
+
+bin/rails test test/controllers/todos_controller_test.rb:15
+
+E
+
+Error:
+TodosControllerTest#test_should_get_edit:
+ActionView::Template::Error: Asset `application.css` was not declared to be precompiled in production.
+Declare links to your assets in `app/assets/config/manifest.js`.
+
+  //= link application.css
+
+and restart your server
+    app/views/layouts/application.html.erb:21
+    test/controllers/todos_controller_test.rb:27:in 'block in <class:TodosControllerTest>'
+
+bin/rails test test/controllers/todos_controller_test.rb:25
+
+..E
+
+Error:
+TodosControllerTest#test_should_get_index:
+ActionView::Template::Error: Asset `application.css` was not declared to be precompiled in production.
+Declare links to your assets in `app/assets/config/manifest.js`.
+
+  //= link application.css
+
+and restart your server
+    app/views/layouts/application.html.erb:21
+    test/controllers/todos_controller_test.rb:5:in 'block in <class:TodosControllerTest>'
+
+bin/rails test test/controllers/todos_controller_test.rb:4
+
+
+
+Finished in 0.166401s, 42.0672 runs/s, 18.0288 assertions/s.
+7 runs, 3 assertions, 0 failures, 4 errors, 0 skips
+Error: Process completed with exit code 1.

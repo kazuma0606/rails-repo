@@ -14,6 +14,4 @@ module ActiveSupport
   end
 end
 
-# Disable asset pipeline in test environment to avoid Sprockets errors
-Rails.application.config.assets.compile = false
-Rails.application.config.assets.precompile = []
+
