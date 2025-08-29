@@ -1,0 +1,64 @@
+<%= form_with model: todo, local: true do |form| %>
+  <% if todo.errors.any? %>
+    <div id="error_explanation" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+      <h2><%= pluralize(todo.errors.count, "個のエラー") %>があります:</h2>
+      <ul>
+        <% todo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" style="margin-bottom: 15px;">
+    <%= form.label :title, "タイトル", style: "display: block; margin-bottom: 5px; font-weight: bold;" %>
+    <%= form.text_field :title, style: "width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" %>
+  </div>
+
+  <div class="field" style="margin-bottom: 15px;">
+    <%= form.label :description, "説明", style: "display: block; margin-bottom: 5px; font-weight: bold;" %>
+    <%= form.text_area :description, rows: 4, style: "width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" %>
+  </div>
+
+  <div class="field" style="margin-bottom: 15px;">
+    <%= form.check_box :completed, style: "margin-right: 5px;" %>
+    <%= form.label :completed, "完了", style: "font-weight: bold;" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "キャンセル", todos_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
+
+<style>
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  .btn-primary { 
+    background-color: #007bff; 
+    border-color: #007bff; 
+    color: white;
+  }
+  .btn-secondary { 
+    background-color: #6c757d; 
+    border-color: #6c757d; 
+    color: white;
+  }
+  .btn:hover { opacity: 0.9; }
+</style>

@@ -1,0 +1,62 @@
+<div class="container">
+  <h1>Todo リスト</h1>
+  
+  <p>
+    <%= link_to '新しいTodoを作成', new_todo_path, class: 'btn btn-primary' %>
+  </p>
+  
+  <% if @todos.any? %>
+    <div class="todo-list">
+      <% @todos.each do |todo| %>
+        <div class="todo-item <%= 'completed' if todo.completed %>" style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px;">
+          <h3>
+            <%= link_to todo.title, todo_path(todo) %>
+            <% if todo.completed %>
+              <span class="badge" style="background-color: #28a745; color: white; padding: 3px 6px; border-radius: 3px; font-size: 0.8em;">完了</span>
+            <% end %>
+          </h3>
+          <% if todo.description.present? %>
+            <p><%= truncate(todo.description, length: 100) %></p>
+          <% end %>
+          <div class="actions" style="margin-top: 10px;">
+            <%= link_to '詳細', todo_path(todo), class: 'btn btn-info' %>
+            <%= link_to '編集', edit_todo_path(todo), class: 'btn btn-warning' %>
+            <%= link_to '削除', todo_path(todo), method: :delete, 
+                confirm: 'このTodoを削除してもよろしいですか？', class: 'btn btn-danger' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>Todoがまだありません。<%= link_to '最初のTodoを作成', new_todo_path %>してください。</p>
+  <% end %>
+</div>
+
+<style>
+  .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    margin-right: 5px;
+  }
+  .btn-primary { background-color: #007bff; border-color: #007bff; }
+  .btn-info { background-color: #17a2b8; border-color: #17a2b8; }
+  .btn-warning { background-color: #ffc107; border-color: #ffc107; color: #212529; }
+  .btn-danger { background-color: #dc3545; border-color: #dc3545; }
+  .btn:hover { opacity: 0.9; }
+  .todo-item.completed { background-color: #f8f9fa; }
+  .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+</style>

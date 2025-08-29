@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo アプリケーション</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .todo-form {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .todo-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .todo-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .todo-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .todo-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .todo-item {
+            background-color: #f8f9fa;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #007bff;
+        }
+        
+        .todo-item.completed {
+            background-color: #e8f5e8;
+            border-left-color: #28a745;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .todo-text {
+            flex: 1;
+        }
+        
+        .todo-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .action-button {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .complete-btn {
+            color: #28a745;
+            border-color: #28a745;
+        }
+        
+        .delete-btn {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+        
+        .action-button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Todoアプリケーション</h1>
+        
+        <div class="todo-form">
+            <input type="text" id="todoInput" class="todo-input" placeholder="新しいタスクを入力してください..." />
+            <button onclick="addTodo()" class="todo-button">追加</button>
+        </div>
+        
+        <ul id="todoList" class="todo-list">
+            <!-- Sample todos -->
+            <li class="todo-item">
+                <span class="todo-text">Ruby on Rails 環境構築</span>
+                <div class="todo-actions">
+                    <button class="action-button complete-btn" onclick="toggleComplete(this)">完了</button>
+                    <button class="action-button delete-btn" onclick="deleteTodo(this)">削除</button>
+                </div>
+            </li>
+            <li class="todo-item">
+                <span class="todo-text">Todoモデル作成</span>
+                <div class="todo-actions">
+                    <button class="action-button complete-btn" onclick="toggleComplete(this)">完了</button>
+                    <button class="action-button delete-btn" onclick="deleteTodo(this)">削除</button>
+                </div>
+            </li>
+            <li class="todo-item completed">
+                <span class="todo-text">プロジェクト初期設定</span>
+                <div class="todo-actions">
+                    <button class="action-button complete-btn" onclick="toggleComplete(this)">未完了</button>
+                    <button class="action-button delete-btn" onclick="deleteTodo(this)">削除</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const todoText = input.value.trim();
+            
+            if (todoText === '') {
+                alert('タスクを入力してください');
+                return;
+            }
+            
+            const todoList = document.getElementById('todoList');
+            const todoItem = document.createElement('li');
+            todoItem.className = 'todo-item';
+            todoItem.innerHTML = `
+                <span class="todo-text">${todoText}</span>
+                <div class="todo-actions">
+                    <button class="action-button complete-btn" onclick="toggleComplete(this)">完了</button>
+                    <button class="action-button delete-btn" onclick="deleteTodo(this)">削除</button>
+                </div>
+            `;
+            
+            todoList.appendChild(todoItem);
+            input.value = '';
+        }
+        
+        function toggleComplete(button) {
+            const todoItem = button.closest('.todo-item');
+            const isCompleted = todoItem.classList.contains('completed');
+            
+            if (isCompleted) {
+                todoItem.classList.remove('completed');
+                button.textContent = '完了';
+                button.className = 'action-button complete-btn';
+            } else {
+                todoItem.classList.add('completed');
+                button.textContent = '未完了';
+                button.className = 'action-button complete-btn';
+            }
+        }
+        
+        function deleteTodo(button) {
+            if (confirm('このタスクを削除しますか？')) {
+                const todoItem = button.closest('.todo-item');
+                todoItem.remove();
+            }
+        }
+        
+        // Enter キーで追加
+        document.getElementById('todoInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTodo();
+            }
+        });
+    </script>
+</body>
+</html>

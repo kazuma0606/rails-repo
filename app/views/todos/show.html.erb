@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="todo-detail" style="border: 1px solid #ddd; padding: 20px; border-radius: 5px; background-color: <%= @todo.completed? ? '#f8f9fa' : 'white' %>;">
+    <h1>
+      <%= @todo.title %>
+      <% if @todo.completed? %>
+        <span class="badge" style="background-color: #28a745; color: white; padding: 5px 10px; border-radius: 3px; font-size: 0.8em; margin-left: 10px;">完了</span>
+      <% else %>
+        <span class="badge" style="background-color: #ffc107; color: #212529; padding: 5px 10px; border-radius: 3px; font-size: 0.8em; margin-left: 10px;">未完了</span>
+      <% end %>
+    </h1>
+    
+    <% if @todo.description.present? %>
+      <div class="description" style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 4px;">
+        <h3>説明</h3>
+        <p style="line-height: 1.6;"><%= simple_format(@todo.description) %></p>
+      </div>
+    <% end %>
+    
+    <div class="meta-info" style="margin: 20px 0; color: #6c757d;">
+      <p><strong>作成日時:</strong> <%= @todo.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+      <% if @todo.updated_at != @todo.created_at %>
+        <p><strong>更新日時:</strong> <%= @todo.updated_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="actions" style="margin-top: 20px;">
+    <%= link_to '編集', edit_todo_path(@todo), class: 'btn btn-warning' %>
+    <%= link_to '削除', todo_path(@todo), method: :delete, 
+        confirm: 'このTodoを削除してもよろしいですか？', class: 'btn btn-danger' %>
+    <%= link_to 'Todo一覧に戻る', todos_path, class: 'btn btn-secondary' %>
+  </div>
+</div>
+
+<style>
+  .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+  .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-right: 10px;
+    color: white;
+  }
+  .btn-warning { background-color: #ffc107; border-color: #ffc107; color: #212529; }
+  .btn-danger { background-color: #dc3545; border-color: #dc3545; }
+  .btn-secondary { background-color: #6c757d; border-color: #6c757d; }
+  .btn:hover { opacity: 0.9; }
+</style>

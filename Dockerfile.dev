@@ -1,0 +1,35 @@
+FROM ruby:3.4.5-slim
+
+# Install essential packages
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    nodejs \
+    sqlite3 \
+    git \
+    curl \
+    libyaml-dev \
+    pkg-config && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create app directory
+WORKDIR /app
+
+# Copy Gemfile
+COPY Gemfile ./
+
+# Install gems (without Gemfile.lock for development)
+RUN gem install bundler
+RUN bundle install
+
+# Copy application code
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p tmp/pids
+
+# Expose port
+EXPOSE 3000
+
+# Start Rails server
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
