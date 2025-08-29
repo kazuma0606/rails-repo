@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
+  title: "買い物リストを作成"
+  description: "牛乳、パン、卵を買う"
   completed: false
 
 two:
-  title: MyString
-  description: MyText
-  completed: false
+  title: "会議の準備"
+  description: "資料の準備と会議室の予約"
+  completed: true
