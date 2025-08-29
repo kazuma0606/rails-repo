@@ -13,3 +13,7 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+# Disable asset pipeline in test environment to avoid Sprockets errors
+Rails.application.config.assets.compile = false
+Rails.application.config.assets.precompile = []

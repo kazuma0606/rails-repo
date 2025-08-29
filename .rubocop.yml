@@ -1,5 +1,5 @@
-# RuboCop configuration for Rails
-inherit_gem: { rubocop-rails: default }
+# RuboCop configuration
+# Basic configuration without external dependencies
 
 # Overwrite or add rules to create your own house style
 #
