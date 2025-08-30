@@ -53,6 +53,7 @@ Rails.application.configure do
 
   # Configure assets for test environment
   config.assets.compile = true
-  config.assets.precompile = %w(application.css)
+  config.assets.precompile = ['application.css']
   config.assets.digest = false
+  config.assets.quiet = true
 end

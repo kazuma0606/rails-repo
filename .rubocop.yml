@@ -43,3 +43,9 @@ Style/GlobalStdStream:
 
 Style/NumericLiterals:
   Enabled: false
+
+Style/ArgumentsForwarding:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
