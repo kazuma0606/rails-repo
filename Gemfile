@@ -21,7 +21,7 @@ gem "jbuilder"
 
 # CI and development tools
 gem "importmap-rails", "~> 2.0"
-gem "brakeman", "~> 6.0"
+gem "brakeman", "~> 7.1"
 gem "rubocop", "~> 1.50"
 gem "rubocop-rails", "~> 2.20"
 gem "rubocop-performance", "~> 1.20"
