@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Use Rails 8.0 complete framework
-gem "rails", "~> 8.0.2"
+gem "rails", "~> 8.1.0"
 
 # Database and server
 gem "sqlite3", ">= 1.6"  
